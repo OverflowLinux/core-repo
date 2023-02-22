@@ -1,0 +1,8 @@
+#!/bin/sh
+NAME="glibc"
+install_package(){
+  echo "用你妈的glibc,赶紧去用musl！" # $1 is root target
+}
+remove_package(){
+  echo "" # $1 is root target
+}
