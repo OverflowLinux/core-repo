@@ -1,0 +1,14 @@
+#!/bin/sh
+NAME="FHS"
+install_package(){
+  cd $1/
+  mkdir bin boot dev etc home lib media mnt opt root sbin tmp usr var
+  ln -sf ../bin usr/bin
+  ln -sf ../lib usr/lib
+  ln -sf ../sbin usr/sbin
+  mkdir usr/include
+  cd -
+}
+remove_package(){
+  rm -rf $1/*
+}
