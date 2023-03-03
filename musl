@@ -1,0 +1,15 @@
+#!/bin/sh
+NAME="musl"
+install_package(){
+  rm -rf $1/usr/src/musl
+  git clone $1/usr/src/musl
+  (
+    cd $1/usr/src/musl
+    ./configure --prefix=$1/usr
+    make
+    make install
+  )
+}
+remove_package(){
+  echo "Wait,what?"
+}
