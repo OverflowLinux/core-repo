@@ -1,0 +1,17 @@
+#!/bin/sh
+NAME="toybox-cutils"
+install_package(){
+  (
+    cd $1/bin
+    curl http://landley.net/toybox/bin/toybox-x86_64 -o toybox
+    chmod 777 ./toybox
+    for line in `./toybox`
+    do
+      ln -sf toybox ${line}
+      chmod 777 ${line}
+    done
+  )
+}
+remove_package(){
+  rm -rf $1/bin/toybox
+}
