@@ -1,0 +1,9 @@
+#!/bin/sh
+NAME="flow"
+install_package(){
+  curl https://overflowlinux.github.io/fpm/flow -o $1/sbin/flow
+  chmod 777 $1/bin/flow
+}
+remove_package(){
+  rm $1/sbin/flow
+}
