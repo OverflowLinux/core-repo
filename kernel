@@ -1,5 +1,5 @@
 #!/bin/sh
-NAME="package_name"
+NAME="kernel"
 install_package(){
   curl https://slackware.uk/slackware/slackware64-current/slackware64/a/kernel-huge-6.1.21-x86_64-1.txz -o /tmp/kh.tar.xz
   rm -rf /tmp/flow/kh
