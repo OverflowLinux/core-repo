@@ -1,0 +1,11 @@
+#!/bin/sh
+NAME="bootloader"
+install_package(){
+  curl https://overflowlinux.github.io/bootloader/boot/bin/bootx64.efi -o $1/boot/efi/EFI/BOOT/bootx64.efi
+  dd if=/dev/urandom of=$1/bootid count=1 bs=16
+  cp $1/bootid $1/boot/efi/EFI/BOOT/bootid
+  cp $1/boot/vmlinuz $1/boot/efi/EFI/BOOT/vmlinuz
+}
+remove_package(){
+  rm $1/boot/efi/EFI/BOOT/bootx64.efi
+}
