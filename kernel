@@ -9,7 +9,7 @@ install_package(){
   cp /tmp/flow/kh/boot/* $1/boot/
   (
     cd $1/
-    sh /tmp/flow/kh/doinst.sh
+    sh /tmp/flow/kh/install/doinst.sh
   )
   
 }
