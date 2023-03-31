@@ -1,0 +1,18 @@
+#!/bin/sh
+NAME="package_name"
+install_package(){
+  curl https://slackware.uk/slackware/slackware64-current/slackware64/a/kernel-huge-6.1.21-x86_64-1.txz -o /tmp/kh.tar.xz
+  rm -rf /tmp/flow/kh
+  mkdir -p /tmp/flow/kh
+  tar -xf /tmp/kh.tar.xz -C /tmp/flow/kh/
+  mkdir -p $1/boot
+  cp /tmp/flow/kh/boot/* $1/boot/
+  (
+    cd $1/
+    sh /tmp/flow/kh/doinst.sh
+  )
+  
+}
+remove_package(){
+  rm -rf $1/boot/*
+}
