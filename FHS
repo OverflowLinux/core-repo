@@ -3,7 +3,7 @@ NAME="FHS"
 install_package(){
   (
     cd $1/
-    mkdir -pv ./{bin,boot,etc/{opt,sysconfig},home,lib/firmware,mnt,opt}
+    mkdir -pv ./{bin,boot,etc/{opt,sysconfig},home,lib/firmware,mnt,opt,proc,sys}
     mkdir -pv ./{media/{floppy,cdrom},srv,var}
     install -dv -m 0750 ./root
     install -dv -m 1777 ./tmp ./var/tmp
