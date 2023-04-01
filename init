@@ -11,6 +11,7 @@ mount -a
 sh /etc/rcS
 EOF
   echo "/bin/sh" > $1/etc/rcS
+  touch $1/etc/fstab
 }
 remove_package(){
   echo "Wait,what?"
