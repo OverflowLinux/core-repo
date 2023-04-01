@@ -1,0 +1,17 @@
+#!/bin/sh
+NAME="init"
+install_package(){
+  cat > $1/sbin/init << EOF
+#!/bin/sh
+mount -t proc proc /proc
+mount -t sysfs sysfs /sys
+mount -o remount,rw /
+echo Hello,world
+mount -a
+sh /etc/rcS
+EOF
+  echo "/bin/sh" > $1/etc/rcS
+}
+remove_package(){
+  echo "Wait,what?"
+}
