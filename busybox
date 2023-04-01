@@ -3,15 +3,10 @@ NAME="busybox"
 install_package(){
   (
     cd $1/bin
-    wget https://www.busybox.net/downloads/binaries/1.35.0-x86_64-linux-musl/busybox
+    curl https://www.busybox.net/downloads/binaries/1.35.0-x86_64-linux-musl/busybox -o busybox
     chmod 777 ./busybox
-    for line in `./busybox`
-    do
-      ln -sf busybox ${line}
-      chmod 777 ${line}
-    done
   )
 }
 remove_package(){
-  rm -rf $1/*
+  rm -rf $1/bin/busybox
 }
