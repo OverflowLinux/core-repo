@@ -6,5 +6,5 @@ install_package(){
   tar -xf /tmp/make.tar.xz -C $1/ --exclude install
 }
 remove_package(){
-  
+  echo
 }
