@@ -6,10 +6,68 @@ install_package(){
   tar -xf /tmp/glibc.tar.xz -C $1/ --exclude install
   rm -rf /tmp/install
   tar -xf /tmp/glibc.tar.xz install/doinst.sh -C /tmp
-  (
-    cd $1/
-    sh /tmp/install/doinst.sh
-  )
+  cd $1/
+  if [ ! -x /sbin/ldconfig ]; then
+    ( cd lib64 ; rm -rf libm.so.6 )
+    ( cd lib64 ; ln -sf libm-2.37.so libm.so.6 )
+    ( cd lib64 ; rm -rf libnss_files.so.2 )
+    ( cd lib64 ; ln -sf libnss_files-2.37.so libnss_files.so.2 )
+    ( cd lib64 ; rm -rf libresolv.so.2 )
+    ( cd lib64 ; ln -sf libresolv-2.37.so libresolv.so.2 )
+    ( cd lib64 ; rm -rf libutil.so.1 )
+    ( cd lib64 ; ln -sf libutil-2.37.so libutil.so.1 )
+    ( cd lib64 ; rm -rf libnss_compat.so.2 )
+    ( cd lib64 ; ln -sf libnss_compat-2.37.so libnss_compat.so.2 )
+    ( cd lib64 ; rm -rf libthread_db.so.1 )
+    ( cd lib64 ; ln -sf libthread_db-1.0.so libthread_db.so.1 )
+    ( cd lib64 ; rm -rf libnss_hesiod.so.2 )
+    ( cd lib64 ; ln -sf libnss_hesiod-2.37.so libnss_hesiod.so.2 )
+    ( cd lib64 ; rm -rf libanl.so.1 )
+    ( cd lib64 ; ln -sf libanl-2.37.so libanl.so.1 )
+    ( cd lib64 ; rm -rf libcrypt.so.1 )
+    ( cd lib64 ; ln -sf libcrypt-2.37.so libcrypt.so.1 )
+    ( cd lib64 ; rm -rf libBrokenLocale.so.1 )
+    ( cd lib64 ; ln -sf libBrokenLocale-2.37.so libBrokenLocale.so.1 )
+    ( cd lib64 ; rm -rf ld-linux-x86-64.so.2 )
+    ( cd lib64 ; ln -sf ld-2.37.so ld-linux-x86-64.so.2 )
+    ( cd lib64 ; rm -rf libdl.so.2 )
+    ( cd lib64 ; ln -sf libdl-2.37.so libdl.so.2 )
+    ( cd lib64 ; rm -rf libnss_dns.so.2 )
+    ( cd lib64 ; ln -sf libnss_dns-2.37.so libnss_dns.so.2 )
+    ( cd lib64 ; rm -rf libpthread.so.0 )
+    ( cd lib64 ; ln -sf libpthread-2.37.so libpthread.so.0 )
+    ( cd lib64 ; rm -rf libc.so.6 )
+    ( cd lib64 ; ln -sf libc-2.37.so libc.so.6 )
+    ( cd lib64 ; rm -rf librt.so.1 )
+    ( cd lib64 ; ln -sf librt-2.37.so librt.so.1 )
+  fi
+
+  # More links:
+  ( cd bin ; rm -rf sln )
+  ( cd bin ; ln -sf /sbin/sln sln )
+  ( cd usr/bin ; rm -rf ld.so )
+  ( cd usr/bin ; ln -sf ../../lib64/ld-linux-x86-64.so.2 ld.so )
+  ( cd usr/lib64 ; rm -rf libBrokenLocale.so )
+  ( cd usr/lib64 ; ln -sf ../../lib64/libBrokenLocale.so.1 libBrokenLocale.so )
+  ( cd usr/lib64 ; rm -rf libanl.so )
+  ( cd usr/lib64 ; ln -sf ../../lib64/libanl.so.1 libanl.so )
+  ( cd usr/lib64 ; rm -rf libc_malloc_debug.so )
+  ( cd usr/lib64 ; ln -sf ../../lib64/libc_malloc_debug.so.0 libc_malloc_debug.so )
+  ( cd usr/lib64 ; rm -rf libcrypt.so )
+  ( cd usr/lib64 ; ln -sf ../../lib64/libcrypt.so.1 libcrypt.so )
+  ( cd usr/lib64 ; rm -rf libmvec.so )
+  ( cd usr/lib64 ; ln -sf ../../lib64/libmvec.so.1 libmvec.so )
+  ( cd usr/lib64 ; rm -rf libnss_compat.so )
+  ( cd usr/lib64 ; ln -sf ../../lib64/libnss_compat.so.2 libnss_compat.so )
+  ( cd usr/lib64 ; rm -rf libnss_db.so )
+  ( cd usr/lib64 ; ln -sf ../../lib64/libnss_db.so.2 libnss_db.so )
+  ( cd usr/lib64 ; rm -rf libnss_hesiod.so )
+  ( cd usr/lib64 ; ln -sf ../../lib64/libnss_hesiod.so.2 libnss_hesiod.so )
+  ( cd usr/lib64 ; rm -rf libresolv.so )
+  ( cd usr/lib64 ; ln -sf ../../lib64/libresolv.so.2 libresolv.so )
+  ( cd usr/lib64 ; rm -rf libthread_db.so )
+  ( cd usr/lib64 ; ln -sf ../../lib64/libthread_db.so.1 libthread_db.so )
+  cd -
 
 }
 remove_package(){
