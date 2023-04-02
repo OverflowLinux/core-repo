@@ -1,7 +1,9 @@
 #!/bin/sh
 NAME="glibc"
 install_package(){
-  echo "用你妈的glibc,赶紧去用musl！" # $1 is root target
+  rm /tmp/glibc.tar.xz
+  curl https://slackware.uk/slackware/slackware64-current/slackware64/l/glibc-2.37-x86_64-2.txz -o /tmp/glibc.tar.xz
+  tar -xf /tmp/glibc.tar.xz -C $1/ --exclude install
 }
 remove_package(){
   echo "" # $1 is root target
