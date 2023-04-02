@@ -1,0 +1,17 @@
+#!/bin/sh
+NAME="gcc"
+install_package(){
+  rm /tmp/gcc-12.2.0-x86_64-1.txz
+  curl https://slackware.uk/slackware/slackware64-current/slackware64/d/gcc-12.2.0-x86_64-1.txz -o /tmp/gcc-12.2.0-x86_64-1.txz
+  tar -xf /tmp/gcc-12.2.0-x86_64-1.txz -C $1/ --exclude install
+  rm -rf /tmp/install
+  tar -xf ./gcc-12.2.0-x86_64-1.txz install/doinst.sh -C /tmp
+  (
+    cd $1/
+    sh /tmp/install/doinst.sh
+  )
+
+}
+remove_package(){
+  echo "" # $1 is root target
+}
