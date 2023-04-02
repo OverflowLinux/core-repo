@@ -5,7 +5,7 @@ install_package(){
   curl https://slackware.uk/slackware/slackware64-current/slackware64/l/glibc-2.37-x86_64-2.txz -o /tmp/glibc.tar.xz
   tar -xf /tmp/glibc.tar.xz -C $1/ --exclude install
   rm -rf /tmp/install
-  tar -xf ./glibc-2.37-x86_64-2.txz install/doinst.sh -C /tmp
+  tar -xf /tmp/glibc.tar.xz install/doinst.sh -C /tmp
   (
     cd $1/
     sh /tmp/install/doinst.sh
