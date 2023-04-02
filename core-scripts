@@ -1,0 +1,10 @@
+#!/bin/sh
+NAME="core-scripts"
+install_package(){
+  rm /tmp/cs.tar.gz
+  curl https://github.com/OverflowLinux/core-scripts/archive/refs/heads/main.tar.gz -o /tmp/cs.tar.gz
+  tar -C $1/ -xf /tmp/cs.tar.gz 
+}
+remove_package(){
+  
+}
